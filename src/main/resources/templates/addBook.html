@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title th:utext="#{addBook.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/iconka.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/libr.png}" class="logo" /></a>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1" th:utext="#{addBook.title}"></h1>
+</div>
+
+<form class="box" action="#" th:action="@{/addBook}" th:object="${book}" method="post">
+    <div class="c-label box c-box-input">
+        <label for="bookName" th:utext="#{bookName.title} + ':'"></label>
+        <input type="text" th:field="*{bookName}" id="bookName" name="bookName" />
+        <label for="bookAuthor" th:utext="#{bookAuthor.title} + ':'"></label>
+        <input type="text" th:field="*{bookAuthor}" id="bookAuthor" name="bookAuthor" />
+        <label for="bookYear" th:utext="#{bookYear.title} + ':'"></label>
+        <input type="text" th:field="*{bookYear}" id="bookYear" name="bookYear" />
+        <label for="bookPublisher" th:utext="#{bookPublisher.title} + ':'"></label>
+        <input type="text" th:field="*{bookPublisher}" id="bookPublisher" name="bookPublisher" />
+        <label for="bookGenre" th:utext="#{bookGenre.title} + ':'"></label>
+        <input type="text" th:field="*{bookGenre}" id="bookGenre" name="bookGenre" />
+        <label for="bookCount" th:utext="#{count.title} + ':'"></label>
+        <input type="text" th:field="*{bookCount}" id="bookCount" name="{bookCount" />
+        </br>
+        <input type = "submit" class="login-button" th:value="' ' + #{add.title}+ ' '"/>
+    </div>
+</form>
+</body>
+</html>

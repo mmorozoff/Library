@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title th:utext="#{editreader.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/iconka.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/libr.png}" class="logo" /></a>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five margin-bottom-five" th:utext="#{editReader.title}"></h1>
+
+    <form class="box" action="#" th:action="@{/editReader}" th:object="${reader}" method="post">
+        <div class="c-label box c-box-input">
+
+            <label for="firstName" th:utext="#{firstName.title}"></label>
+            <input type="text" th:field="*{firstName}" id="firstName" name="firstName" />
+            <label for="lastName" th:utext="#{lastName.title}"></label>
+            <input type="text" th:field="*{lastName}" id="lastName" name="lastName" />
+            <label for="login" th:utext="#{userLogin.title} + ':'"></label>
+            <input type="text" th:field="*{login}" id="login" name="login" />
+            <label for="userPassword" th:utext="#{password.title} + ':'"></label>
+            <input type="text" th:field="*{userPassword}" id="userPassword" name="userPassword" />
+            <label for="email" th:utext="#{Email.title}"></label>
+            <input type="text" th:field="*{email}" id="email" name="email" />
+            <input type="hidden" th:value="${reader.id}" th:field="*{id}" />
+            </br>
+            <input type = "submit" class="login-button" value="#{edit.title}" />
+
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

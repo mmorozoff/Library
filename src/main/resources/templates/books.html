@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:utext="#{book.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/iconka.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/libr.png}" class="logo" /></a>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five" th:utext="#{book.title}"></h1>
+    <div class="text-right" th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ROLE_ADMIN')}">
+        <a class="a-link-margin" th:text="#{addBook.title}" th:href="@{/addBook}"></a>
+    </div>
+    <form th:action="@{/books}" method="get">
+        <input class="search" type="text" name="search" th:value="${search}" th:placeholder='#{placeholder.title}'>
+        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect" th:utext="#{nothingfound.title}"></div>
+        <div th:if="${not #lists.isEmpty(result)}">
+            <div class="table-container-small">
+                <table>
+                    <thead>
+                    <tr>
+                        <th th:utext="#{id.title}"></th>
+                        <th th:utext="#{bookName.title}"></th>
+                        <th th:utext="#{bookAuthor.title}"></th>
+                        <th th:utext="#{bookYear.title}"></th>
+                        <th th:utext="#{bookPublisher.title}"></th>
+                        <th th:utext="#{bookGenre.title}"></th>
+                        <th th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}"></th>
+                        <th th:if="${#request.isUserInRole('READER')}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="book: ${result}"><td th:utext="${book.id}"></td>
+                        <td th:utext="${book.bookName}"></td>
+                        <td th:utext="${book.bookAuthor}"></td>
+                        <td th:utext="${book.bookYear}"></td>
+                        <td th:utext="${book.bookPublisher}"></td>
+                        <td th:utext="${book.bookGenre}"></td>
+                        <td th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}">
+                            <a class="a-link-no-margin" th:href="'/editBook?id=' + ${book.id}"><img th:src="@{/img/edit.png}" class="iconimg" /></a>
+                            <a class="a-link-no-margin" th:href="'/deleteBook?id=' + ${book.id}"><img th:src="@{/img/bin.png}" class="iconimg" /></a>
+                        </td>
+                        <td th:if="${#request.isUserInRole('READER')}">
+                            <a class="a-link-no-margin" th:href="'/takeBook?id=' + ${book.id}"><img th:src="@{/img/check.png}" class="iconimg" /></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

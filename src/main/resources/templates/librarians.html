@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:utext="#{librarians.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/iconka.ico}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/libr.png}" class="logo" /></a>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+        </div>
+    </div>
+</header>
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five" th:utext="#{librarians.title}"></h1>
+    <div class="text-right" th:if="${#request.isUserInRole('ADMIN')}">
+        <a class="a-link-margin" th:text="#{addLibrarian.title}" th:href="@{/addLibrarian}"></a>
+    </div>
+    <form th:action="@{/librarians}" method="get">
+
+        <input class="search" type="text" name="search" th:value="${search}" th:placeholder='#{placeholder.title}'>
+
+        <div th:if="${#lists.isEmpty(result)}" class="c-label incorrect" th:utext="#{result.title}"></div>
+        <div th:if="${not #lists.isEmpty(result)}">
+
+        <div class="table-container">
+
+        <table>
+            <thead>
+            <tr>
+                <th th:utext="#{id.title}"></th>
+                <th th:utext="#{firstName.title}"></th>
+                <th th:utext="#{lastName.title}"></th>
+                <th th:utext="#{Email.title}"></th>
+                <th th:utext="#{Phone.title}"></th>
+                <th th:if="${#request.isUserInRole('ADMIN')}" th:utext="#{userLogin.title}"></th>
+                <th th:if="${#request.isUserInRole('ADMIN')}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="librarian: ${result}">
+                <td th:utext="${librarian.id}"></td>
+                <td th:utext="${librarian.firstName}"></td>
+                <td th:utext="${librarian.lastName}"></td>
+                <td th:utext="${librarian.Email}"></td>
+                <td th:utext="${librarian.Phone}"></td>
+                <td th:if="${#request.isUserInRole('ADMIN')}" th:utext="${librarian.login}"></td>
+                <td th:if="${#request.isUserInRole('ADMIN')}">
+                    <a class="a-link-no-margin" th:href="'/editLibrarian?id=' + ${librarian.id}"><img th:src="@{/img/edit.png}" class="iconimg" /></a>
+                    <a class="a-link-no-margin" th:href="'/deleteLibrarian?id=' + ${librarian.id}"><img th:src="@{/img/bin.png}" class="iconimg" /></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

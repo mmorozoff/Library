@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="#{acts.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/iconka.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <meta charset="UTF-8"/>
+    <script th:inline="javascript">
+        function download(data, filename, type) {
+            var file = new Blob([data], {type: type});
+            if (window.navigator.msSaveOrOpenBlob) // IE10+
+                window.navigator.msSaveOrOpenBlob(file, filename);
+            else { // Others
+                var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function() {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+            }
+        }
+    </script>
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/libr.png}" class="logo" /></a>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five" th:utext="#{acts.title}"></h1>
+    <div class="table-container-small">
+        <table>
+            <thead>
+            <tr>
+                <th th:utext="#{id.title}"></th>
+                <th th:utext="#{bookName.title}"></th>
+                <th th:utext="#{fullName.title}"></th>
+                <th style="text-align: center" th:utext="#{startdate.title}"></th>
+                <th style="text-align: center" th:utext="#{finishdate.title}"></th>
+                <th th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="act: ${acts}">
+                <td th:utext="${act.id}"></td>
+                <td th:utext="${act.bookName}"></td>
+                <td th:utext="${act.readerName}"></td>
+                <td th:utext="${act.finishDate}"></td>
+                <td th:utext="${act.startDate}"></td>
+                <td th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}">
+                    <a class="a-link-no-margin" th:href="'/deleteAct?id=' + ${act.id}"><img th:src="@{/img/bin.png}" class="iconimg" /></a>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

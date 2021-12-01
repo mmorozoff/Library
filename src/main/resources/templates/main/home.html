@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title th:text="#{main.title}"></title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+        <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/iconka.ico}"  />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}" />
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="navbar">
+                    <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/libr.png}" class="logo" /></a>
+                    <div class="local">
+                        <a href="#en" th:href="@{?locale=en}">En</a> |
+                        <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+                    </div>
+                    <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+                </div>
+            </div>
+        </header>
+        <div class="text-center">
+            <h1 class="c-text-h1 margin-five" th:text="#{welcomeshort.title}"></h1>
+                <div style="padding: 2% 30%">
+                    <div th:if="${#request.isUserInRole('BLOCKED')}" style="text-align: center;">
+                        <div class="box c-box-incorrect">
+                            <div class="c-label incorrect" th:text="#{blocked.title}"></div>
+                        </div>
+                    </div>
+                    <div th:if="${#request.isUserInRole('READER')}">
+                        <li><a class="a-link-margin" th:text="#{librarians.title}" th:href="@{/librarians}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{book.title}" th:href="@{/books}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{acts.title}" th:href="@{/acts}"></a></li>
+                    </div>
+                    <div th:if="${#request.isUserInRole('LIBRARIAN')}">
+                        <li><a class="a-link-margin" th:text="#{readers.title}" th:href="@{/readers}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{librarians.title}" th:href="@{/librarians}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{book.title}" th:href="@{/books}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{acts.title}" th:href="@{/acts}"></a></li>
+                    </div>
+                    <div th:if="${#request.isUserInRole('ADMIN')}">
+                        <li><a class="a-link-margin" th:text="#{readers.title}" th:href="@{/readers}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{librarians.title}" th:href="@{/librarians}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{book.title}" th:href="@{/books}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{acts.title}" th:href="@{/acts}"></a></li>
+                    </div>
+                </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,267 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: 0s ease-in-out; /* добавим плавность переходов для всех элементов страницы*/
+}
+
+input,
+button {
+    align-self: center;
+    font-family: "Source Sans Pro";
+    font-size: 1.1rem;
+    font-weight: 400;
+    align-self: center;
+}
+
+.c-text-h1 {
+    color: black;
+    font-family: "Montserrat";
+    font-size: 2.25rem;
+    font-weight: 800;
+}
+
+.margin-five {
+    margin-top: 5%;
+}
+
+.margin-bottom-five {
+    margin-bottom: 5%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    padding-left: 500px;
+}
+
+.c-text-body {
+    margin-top: 0.9%;
+    color: black;
+    font-family: "Source Sans Pro Regular";
+    font-size: 1.125rem;
+    font-weight: 200;
+}
+
+.c-label {
+    color: black;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.box {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.c-box-input {
+    margin-top: 20px;
+    width: 175px;
+}
+
+.c-box-incorrect {
+    margin-top: 2.5%;
+}
+
+.incorrect {
+    align-self: center;
+    justify-content: center;
+    color: red;
+}
+
+.navbar {
+    margin-top: 1.5rem;
+    display: flex;
+}
+
+.container {
+    margin-left: 2.6%;
+    margin-right: 18.3%;
+}
+
+a:hover {
+    color: #7B68EE;
+    border-bottom-color: #7B68EE;
+}
+
+li {
+    font-family: "Source Sans Pro SemiBold";
+    font-size: 1.1rem;
+    /*font-weight: 600;*/
+    text-align: left;
+    flex-direction: column;
+    list-style: none;
+    display: list-item;
+}
+
+ul {
+    box-sizing: border-box;
+    flex-direction: row;
+    display: flex;
+    margin-top: 0;
+    margin-left: auto;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.c-link-menu {
+    font-weight: 600;
+    text-align: center;
+}
+
+a {
+    box-sizing: border-box;
+    text-decoration: none;
+    line-height: 1.5;
+    color: black;
+}
+
+.a-link-margin {
+    margin-left: 2.5rem;
+}
+
+.a-link-no-margin {
+    font-family: "Source Sans Pro Regular";
+    text-align: left;
+    padding: 6px;
+}
+
+.logo {
+    margin-left: 150px;
+}
+
+.login-button {
+    font-family: "Source Sans Pro SemiBold";
+}
+
+.table-container-10 {
+    padding: 2% 10%;
+}
+
+.table-container {
+    padding: 2% 20%;
+}
+
+.table-container-small {
+    padding: 2% 20%;
+}
+
+.table-container-small-40 {
+    padding: 2% 40%;
+}
+
+table {
+    font-family: "Source Sans Pro Regular";
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #7B68EE;
+    color: white;
+}
+
+img {
+    margin-top: 3.5%;
+}
+
+.iconimg {
+    width: 20px;
+    height: 20px;
+}
+.search {
+    font-family: Montserrat;
+    font-size: 1.2rem;
+    padding: 0.2%;
+    border: #7B68EE;
+    margin: 3% 25%;
+    width: 390px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search:focus {
+    width: 50%;
+}
+
+.td-x-container {
+    text-align: center;
+}
+
+.red-x {
+    font-family: Montserrat;
+    font-weight: 900;
+    color: red;
+}
+
+.red-x:hover {
+    color: #b00000;
+}
+
+.green-y {
+    font-weight: 900;
+    color: black;
+}
+
+.green-y:hover {
+    color: #7B68EE;
+}
+
+.map {
+    margin: 2% 0%;
+}
+
+button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: "Source Sans Pro Regular";
+    color:black;
+    font-size: 0.9rem;
+    font-weight: 100;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.download:hover{
+    color: #7B68EE;
+}
+
+.local {
+    text-align: center;
+    font-family: "Source Sans Pro Regular";
+    padding: 1.2% 2% 0%;
+    position: relative;
+    bottom: 0;
+    height: 20px;
+    border-top-width: 5px;
+    border-top-style: solid;
+    border-top-color: #FFF;
+}
+
+.c-chart{
+    font-size: 1.5rem;
+    font-family: "Source Sans Pro Regular";
+}
+
+.marking-ul{
+    flex-direction: column;
+}
+
