@@ -9,10 +9,6 @@ import java.util.List;
 
 public interface BookService {
 
-    List<BookDto> allBooks();
-
-    List<BookNameDto> allBookNames();
-
     void add(BookDto dto) throws ConvertingException;
 
     void delete(BookDto dto) throws ConvertingException;

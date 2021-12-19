@@ -34,33 +34,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookNameDto> allBookNames(){
-        logger.info("Show book names");
-        return StreamSupport.stream(bookRepository
-                .findAll().spliterator(), false)
-                .map(book -> bookConverter.convertToBookNameDto(book))
-                .sorted(Comparator.comparing(BookNameDto::getId))
-                .collect(Collectors.toList());
-
-    }
-
-    @Override
-    public List<BookDto> allBooks() {
-        logger.info("Show books");
+    public List<BookDto> getBooksByName(String param) {
+        logger.info("Get books by param: " + param);
         return StreamSupport.stream(bookRepository
                 .findAll().spliterator(), false)
                 .map(book -> bookConverter.convertToAllBookInfoDto(book))
-                .sorted(Comparator.comparing(BookDto::getId))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<BookDto> getBooksByName(String name) {
-        logger.info("Get books by name: " + name);
-        return StreamSupport.stream(bookRepository
-                .findAll().spliterator(), false)
-                .map(book -> bookConverter.convertToAllBookInfoDto(book))
-                .filter(book -> book.getBookName().contains(name))
+                .filter(book -> book.getBookName().contains(param)
+                        || book.getBookAuthor().contains(param)
+                        || book.getBookGenre().contains(param)
+                        || book.getBookPublisher().contains(param))
                 .collect(Collectors.toList());
     }
 

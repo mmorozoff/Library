@@ -31,16 +31,6 @@ public class LibrarianServiceImpl implements LibrarianService {
         this.userConverter = userConverter;
     }
 
-    @Override
-    public List<LibrarianDto> allLibrarians() {
-        logger.info("Show librarians");
-        return StreamSupport.stream(librarianRepository
-                .findAll().spliterator(), false)
-                .map(librarian -> userConverter.convertToLibrarianInfoDto(librarian))
-                .sorted(Comparator.comparing(LibrarianDto::getId))
-                .collect(Collectors.toList());
-    }
-
     @Transactional
     @Override
     public void add(LibrarianDto dto) throws ConvertingException {
@@ -81,33 +71,9 @@ public class LibrarianServiceImpl implements LibrarianService {
                 .filter(librarian -> librarian.getFirstName().contains(param)
                         || librarian.getLastName().contains(param)
                         || librarian.getLogin().contains(param)
-                        || librarian.getUserPassword().contains(param)
                         || librarian.getPhone().contains(param)
                         || librarian.getEmail().contains(param)
                         || librarian.getUserRole().contains(param))
                 .collect(Collectors.toList());
     }
-
-    @Override
-    public List<GeneralUserDto> getGeneralLibrariansInfo(){
-        logger.info("Get general librarians info");
-        return StreamSupport.stream(librarianRepository
-                .findAll().spliterator(), false)
-                .map(librarian -> userConverter.convertToGeneralUserInfoDto(librarian))
-                .sorted(Comparator.comparing(GeneralUserDto::getId))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<GeneralUserDto> getLibrariansGeneralInfoByParam(String param){
-        logger.info("Get librarians general info by param: " + param);
-        return StreamSupport.stream(librarianRepository
-                .findAll().spliterator(), false)
-                .map(librarian -> userConverter.convertToGeneralUserInfoDto(librarian))
-                .filter(librarian -> librarian.getFirstName().contains(param)
-                        || librarian.getLastName().contains(param))
-                .sorted(Comparator.comparing(GeneralUserDto::getId))
-                .collect(Collectors.toList());
-    }
-
 }

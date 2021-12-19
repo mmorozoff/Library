@@ -14,21 +14,15 @@ public class ActDto {
     private String startDate;
     private String finishDate;
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getBookId() {
-        return bookId;
-    }
+    public Long getBookId() { return bookId; }
 
-    public void setBookId(Long id) {
-        this.bookId = id;
-    }
+    public void setBookId(Long id) { this.bookId = id; }
 
     public String getBookName()
     {

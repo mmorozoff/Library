@@ -33,17 +33,12 @@
                         <li><a class="a-link-margin" th:text="#{book.title}" th:href="@{/books}"></a></li>
                         <li><a class="a-link-margin" th:text="#{acts.title}" th:href="@{/acts}"></a></li>
                     </div>
-                    <div th:if="${#request.isUserInRole('LIBRARIAN')}">
+                    <div th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ROLE_ADMIN')}">
                         <li><a class="a-link-margin" th:text="#{readers.title}" th:href="@{/readers}"></a></li>
                         <li><a class="a-link-margin" th:text="#{librarians.title}" th:href="@{/librarians}"></a></li>
                         <li><a class="a-link-margin" th:text="#{book.title}" th:href="@{/books}"></a></li>
                         <li><a class="a-link-margin" th:text="#{acts.title}" th:href="@{/acts}"></a></li>
-                    </div>
-                    <div th:if="${#request.isUserInRole('ADMIN')}">
-                        <li><a class="a-link-margin" th:text="#{readers.title}" th:href="@{/readers}"></a></li>
-                        <li><a class="a-link-margin" th:text="#{librarians.title}" th:href="@{/librarians}"></a></li>
-                        <li><a class="a-link-margin" th:text="#{book.title}" th:href="@{/books}"></a></li>
-                        <li><a class="a-link-margin" th:text="#{acts.title}" th:href="@{/acts}"></a></li>
+                        <li><a class="a-link-margin" th:text="#{stats.title}" th:href="@{/statsAct}"></a></li>
                     </div>
                 </div>
         </div>

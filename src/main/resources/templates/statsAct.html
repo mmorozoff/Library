@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="#{stats.title}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/img/iconka.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fonts.css}"/>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <meta charset="UTF-8"/>
+
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div class="navbar">
+            <a class="a-link-margin" th:href="@{/all/home}"><img th:src="@{/img/libr.png}" class="logo" /></a>
+            <div class="local">
+                <a href="#en" th:href="@{?locale=en}">En</a> |
+                <a href="#ru" th:href="@{?locale=ru}">Ru</a>
+            </div>
+            <ul><li><a class="a-link-margin" th:text="#{logout.title}" th:href="@{/logout}"></a></li></ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center">
+    <h1 class="c-text-h1 margin-five" th:utext="#{stats.title}"></h1>
+    </br>
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    (function () {
+        var acts = /*[[${acts}]]*/ [];
+        var series = [];
+        var data = [];
+
+        for (var i = 0; i < acts.length; i++) {
+            var object = {};
+            object.name = acts[i].bookName.toUpperCase();
+            object.y = acts[i].bookCount;
+            data.push(object);
+        }
+        var seriesObject = {
+            name: 'Course By Category',
+            colorByPoint: true,
+            data: data
+        };
+        series.push(seriesObject);
+        drawPieChart(series);
+
+        function drawPieChart(series) {
+            Highcharts.chart('chartContainer', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<strong>' + this.key + ': </strong>' + this.y;
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.y}'
+                        }
+                    }
+                },
+                // use the series data defined earlier:
+                series: series
+            });
+        }
+
+    })();
+</script>
+
+</body>
+</html>

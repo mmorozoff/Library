@@ -91,7 +91,6 @@ public class ReaderServiceImpl implements ReaderService {
                 .filter(reader -> reader.getFirstName().contains(param)
                 || reader.getLastName().contains(param)
                 || reader.getLogin().contains(param)
-                || reader.getUserPassword().contains(param)
                 || reader.getEmail().contains(param))
                 .collect(Collectors.toList());
         logger.info("readers setted");

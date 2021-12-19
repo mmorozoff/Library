@@ -53,6 +53,7 @@
                 <th style="text-align: center" th:utext="#{startdate.title}"></th>
                 <th style="text-align: center" th:utext="#{finishdate.title}"></th>
                 <th th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}"></th>
+                <th th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}"></th>
             </tr>
             </thead>
             <tbody>
@@ -60,10 +61,21 @@
                 <td th:utext="${act.id}"></td>
                 <td th:utext="${act.bookName}"></td>
                 <td th:utext="${act.readerName}"></td>
-                <td th:utext="${act.finishDate}"></td>
                 <td th:utext="${act.startDate}"></td>
+                <td th:utext="${act.finishDate}"></td>
                 <td th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}">
                     <a class="a-link-no-margin" th:href="'/deleteAct?id=' + ${act.id}"><img th:src="@{/img/bin.png}" class="iconimg" /></a>
+                </td>
+                <td th:if="${#request.isUserInRole('LIBRARIAN') || #request.isUserInRole('ADMIN')}">
+                    <button class="download" th:onclick="/*<![CDATA[*/ var id = /*[[${act.id}]]*/;
+                                                            var bookName = /*[[${act.bookName}]]*/;
+                                                            var readerName = /*[[${act.readerName}]]*/;
+                                                            var finishDate = /*[[${act.finishDate}]]*/;
+                                                            var startDate = /*[[${act.startDate}]]*/;
+                                                            download('Id: ' + id + '\n' + 'Book Name: ' + bookName + '\n' + 'Reader Name: ' +
+                                                                        readerName + '\n' + 'Start Date: ' + startDate + '\n' + 'Finish Date: ' + finishDate + '\n', 'Act' + id.toString(), String); /*]]>*/ ">
+                        <img th:src="@{/img/download.png}" class="iconimg" />
+                    </button>
                 </td>
                 </tr>
             </tbody>
